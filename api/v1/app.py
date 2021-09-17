@@ -2,11 +2,13 @@
 """ Creates an flask web service"""
 
 from flask import Flask
-from models import storage
-from api.v1.views import app_views
 import os
 
 app = Flask(__name__)
+
+from models import storage
+from api.v1.views import app_views
+
 app.register_blueprint(app_views)
 
 
@@ -16,10 +18,7 @@ def tear_down(self):
     storage.close()
 
 if __name__ == "__main__":
-    host = os.getenv("HBNB_API_HOST")
-    port = os.getenv("HBNB_API_PORT")
-    if (!host):
-        host = "0.0.0.0"
-    if (!port):
-        port = 5000
-    app.run(host=host, port=port, threaded-True)
+    if os.getenv("HBNB_API_HOST") and os.getenv("HBNB_API_PORT"):
+        app.run(host=os.getenv("HBNB_API_HOST"), port=os.getenv("HBNB_API_PORT"), threaded=true)
+    else:
+        app.run(host='0.0.0.0', port=5000, threaded=True)
