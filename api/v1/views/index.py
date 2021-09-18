@@ -12,10 +12,9 @@ def status_ok():
 
 @app_views.route("/stats")
 def obj_stats():
-    objs = {"amenities": storage.count("Amenities"),
-            "cities": storage.count("Cities"),
-            "reviews": storage.count("Reviews"),
-            "states": storage.count("States"),
-            "users": storage.count("Users")}
-    print("This is objs {}/n".format(objs))
+    objs = {"amenities": storage.count("Amenity"),
+            "cities": storage.count("Citiy"),
+            "reviews": storage.count("Review"),
+            "states": storage.count("State"),
+            "users": storage.count("User")}
     return jsonify(objs)
