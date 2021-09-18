@@ -13,7 +13,7 @@ def status_ok():
 @app_views.route("/stats")
 def obj_stats():
     objs = {"amenities": storage.count("Amenity"),
-            "cities": storage.count("Citiy"),
+            "cities": storage.count("City"),
             "reviews": storage.count("Review"),
             "states": storage.count("State"),
             "users": storage.count("User")}
