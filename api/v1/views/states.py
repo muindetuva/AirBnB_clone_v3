@@ -1,7 +1,7 @@
 #!/usr/bin/python3
 """ States view"""
 from api.v1.views import app_views
-from flask import jsonify, abort, make_response, request, Response
+from flask import jsonify, abort, make_response, request
 from models import storage
 from models.state import State
 
@@ -46,8 +46,9 @@ def create_state():
 
     state = State()
     state.name = request.get_json()['name']
-    storage.new(state)
-    storage.save()
+    state.save()
+#    storage.new(state)
+#    storage.save()
     return make_response(jsonify(state.to_dict()), 201)
 
 
