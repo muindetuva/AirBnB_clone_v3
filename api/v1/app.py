@@ -25,9 +25,8 @@ def not_found(error):
 
 
 @app.errorhandler(400)
-def bad_request(e):
-    print(e.description)
-    return make_response(jsonify({'error': e.description}), 400)
+def bad_request(error):
+    return make_response(jsonify({'error': error.description}), 400)
 
 
 if __name__ == "__main__":
