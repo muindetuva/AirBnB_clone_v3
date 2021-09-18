@@ -5,7 +5,7 @@ from flask import jsonify
 from models import storage
 
 
-@app_views.route("/states/")
+@app_views.route("/states", strict_slashes=False)
 def all_states():
     states_list = []
     for state in storage.all("State").values():
