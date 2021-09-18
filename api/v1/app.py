@@ -4,11 +4,11 @@
 from flask import Flask, make_response, jsonify
 import os
 
-app = Flask(__name__)
 
 from models import storage
 from api.v1.views import app_views
 
+app = Flask(__name__)
 app.url_map.strict_slashes = False
 app.register_blueprint(app_views)
 
@@ -22,6 +22,13 @@ def tear_down(self):
 @app.errorhandler(404)
 def not_found(error):
     return make_response(jsonify({"error": "Not found"}), 404)
+
+
+@app.errorhandler(400)
+def bad_request(e):
+    print(e.description)
+    return make_response(jsonify({'error': e.description}), 400)
+
 
 if __name__ == "__main__":
     if os.getenv("HBNB_API_HOST") and os.getenv("HBNB_API_PORT"):
