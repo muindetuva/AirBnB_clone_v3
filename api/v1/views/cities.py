@@ -6,11 +6,6 @@ from models import storage
 from models.city import City
 
 
-all_state_ids = []
-for state in storage.all("State").values():
-    all_state_ids.append(state.id)
-
-
 @app_views.route("/states/<state_id>/cities")
 def all_cities(state_id):
     '''Returns a list of all the cities'''
@@ -54,6 +49,9 @@ def create_city():
 
     if not request.get_json().get('name'):
         abort(400, description="Missing name")
+    all_state_ids = []
+    for state in storage.all("State").values():
+        all_state_ids.append(state.id)
 
     if state_id in all_state_ids:
         city = City()
