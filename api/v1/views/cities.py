@@ -20,17 +20,6 @@ def all_cities(state_id):
         cities_list.append(city.to_dict())
     return jsonify(cities_list)
 
-#    cities_list = []
-#    for state in storage.all("State").values():
-#        if state.id == state_id:
-#            pass
-#        else:
-#            abort(400)
-#    for city in storage.all("City").values():
-#        if city.state_id == state_id:
-#            cities_list.append(city.to_dict())
-#    return jsonify(cities_list)
-
 
 @app_views.route("/cities/<city_id>")
 def city(city_id):
@@ -71,22 +60,6 @@ def create_city(state_id):
     city.state_id = state_id
     city.save()
     return make_response(jsonify(city.to_dict()), 201)
-
-#    all_state_ids = []
-#    for state in storage.all("State").values():
-#        all_state_ids.append(state.id)
-
-#    if state_id in all_state_ids:
-#        city = City()
-#        city.name = request.get_json()['name']
-#        city.state_id = state_id
-#        city.save()
-        #    storage.new(city)
-        #    storage.save()
-#    else:
-#        abort(404)
-
-#    return make_response(jsonify(city.to_dict()), 201)
 
 
 @app_views.route("/cities/<city_id>", methods=['PUT'])
