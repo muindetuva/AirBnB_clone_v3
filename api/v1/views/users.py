@@ -43,7 +43,9 @@ def create_user():
 
     if not request.get_json().get('email'):
         abort(400, description="Missing email")
-    if not request.get_json.get('password'):
+
+    # You had forgotten the brackets for get_json below here
+    if not request.get_json().get('password'):
         abort(400, description="Missing password")
 
     user = User()
