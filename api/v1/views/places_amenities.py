@@ -29,7 +29,9 @@ def all_place_amenities(place_id):
 
     return jsonify(amenities_list)
 
-@app_views.route("/places/<place_id>/amenities/<amenity_id>", methods=['DELETE'])
+
+@app_views.route("/places/<place_id>/amenities/<amenity_id>",
+                 methods=['DELETE'])
 def delete_place_amenity(place_id, amenity_id):
     '''Deletes the specified amenity'''
     # Check if place exists
@@ -49,7 +51,6 @@ def delete_place_amenity(place_id, amenity_id):
                 # Disconnet the amenity and return
                 break
         abort(404)
-        
     else:
         if amenity.id not in place.amenity_ids:
             abort(404)
@@ -79,7 +80,6 @@ def create_place_amenity(place_id, amenity_id):
 
         # Connect the amenity and save and return
         return make_response(jsonify(amenity.to_dict()), 201)
-        
     else:
         if amenity_id in place.amenity_ids:
             return make_response(jsonify(amenity.to_dict()), 200)
